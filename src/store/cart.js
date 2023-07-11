@@ -4,6 +4,7 @@ const INCREMENT = 'cart/INCREMENT';
 const DECREMENT = 'cart/DECREMENT';
 const REMOVE = 'cart/REMOVE';
 const CHANGE_COUNT = 'cart/CHANGE_COUNT';
+const EMPTY_CART = 'cart/EMPTY_CART';
 
 export const addProduce = (produce) => {
     return {
@@ -41,6 +42,12 @@ export const changeCount = (produce, count) => {
     }
 }
 
+export const emptyCart = () => {
+    return {
+        type: EMPTY_CART
+    }
+}
+
 export default function cartReducer(state = {}, action) {
     const newState = Object.assign({}, state);
     let id;
@@ -67,6 +74,8 @@ export default function cartReducer(state = {}, action) {
         case CHANGE_COUNT:
             newState[id].count = action.count;
             return newState;
+        case EMPTY_CART:
+            return {};
         default:
             return state;
     }
